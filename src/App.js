@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <h1>app</h1>
+        <h1>Learn in a Flash!</h1>
         <UsersContainer/>
       </div>
     );

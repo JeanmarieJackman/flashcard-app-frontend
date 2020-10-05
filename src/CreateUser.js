@@ -30,11 +30,12 @@ class CreateUser extends Component {
     render() {
     return (
         <>
-        <h2>Create a User Name</h2>
+        <h2>Sign Up</h2>
+        <p>Create a User Name</p>
         <form onSubmit={this.submitHandler}>
         <input type="text" name="name" placeholder="Create a User Name" value={this.state.name} onChange={this.changeHandler} />
         <input type="text" name="age" placeholder="Enter your age" value={this.state.age} onChange={this.changeHandler} />
-        <button>Submit</button>
+        <button  onClick={this.props.clickHandler}>Submit</button>
         </form>
         </>
         )

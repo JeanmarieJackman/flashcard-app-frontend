@@ -1,47 +1,48 @@
-import React, { Component} from 'react';
-import './App.css';
-import CreateUser from './CreateUser.js';
+    import React, { Component} from 'react';
+    import './App.css';
+    import CreateUser from './CreateUser.js';
+    import UserCard from './UserCard.js'
 
-class UsersContainer extends React.Component {
+    class UsersContainer extends React.Component {
 
-  state = {
+    state = {
     usersArray: [],
-    clicked: false
-  }
+    // clicked: false
+    }
 
-  clickHandler = () => {
-    this.setState((previousState) => ({clicked: !previousState.clicked}))
-  }
+    // clickHandler = () => {
+    // this.setState((previousState) => ({clicked: !previousState.clicked}))
+    // }
 
-  componentDidMount() {
+    componentDidMount() {
     fetch("http://localhost:3000/users")
     .then(resp => resp.json())
-    // .then(data => console.log(data))
-    .then(data => this.setState({ usersArray: data}))
-  }
+    .then(data => console.log(data))
+    // .then(data => this.setState({ usersArray: data}))
+    }
 
-  createUserHandler = (obj) => {
+    createUserHandler = (obj) => {
     fetch("http://localhost:3000/users", {
-      method: "POST",
-      headers: {
+        method: "POST",
+        headers: {
         "content-type": "application/json",
         accepts: "application/json"
-      },
-      body: JSON.stringify(obj)
+        },
+        body: JSON.stringify(obj)
     })
     .then(resp => resp.json())
     .then(obj => this.setState({ usersArray: [...this.state.usersArray, obj]}))
-  }
+    }
 
-  render() {
+    render() {
     console.log(this.state.usersArray)
     return (
-      <div className="UsersContainer">
-        <CreateUser submitHandler={this.createUserHandler} />
-      
-      </div>
-    );
-  }
+        <div className="UsersContainer" >
+            <UserCard/>
+            <CreateUser submitHandler={this.createUserHandler} clickHandler={this.clickHandler} />
+        </div>
+        );
+    }
 }
 
-export default UsersContainer;
+    export default UsersContainer;
